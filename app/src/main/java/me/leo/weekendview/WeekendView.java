@@ -309,6 +309,8 @@ public class WeekendView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        canvas.save();
+
         // Scroller是屏幕的移动
         // 滑动控制
         int scrollX = getScrollX();
@@ -316,6 +318,9 @@ public class WeekendView extends View {
         mLeftLine = mLeftHelperLineInit + scrollX;
         mRightLine = mRightHelperLineInit + scrollX;
         mMiddleLine = mHalfWidth + scrollX;
+
+        canvas.clipRect(scrollX, 0, mWidth+scrollX, mHeight);
+
 
         if (isDebug) {
             canvas.drawLine(mLeftLine, 0, mLeftLine, mHeight, mHelpPaint);
@@ -334,6 +339,8 @@ public class WeekendView extends View {
             // 圆：变化的只是圆的半径。移动的是手机
             canvas.drawCircle(currentX, mHeight / 2, currentRadius, mPaint);
         }
+
+        canvas.restore();
 
     }
 
