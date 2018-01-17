@@ -2,4 +2,4 @@
 
 效果：
 
-![Image](weekendview.gif)
+![Image](image.gif)
