@@ -34,7 +34,7 @@ class SampleProgressFragment : Fragment() {
 
         root.btnStartProgress.setOnClickListener {
             val animator = ObjectAnimator.ofFloat(root.progressBar, "progress", 0f, 100f)
-            animator.duration = 3000
+            animator.duration = 6000
             animator.start()
         }
 
