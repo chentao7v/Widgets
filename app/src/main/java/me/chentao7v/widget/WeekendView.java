@@ -20,7 +20,7 @@ public class WeekendView extends View {
 
     private static String TAG = "WeekendView";
 
-    private boolean isDebug = true;
+    private boolean isDebug = false;
 
     private Paint mPaint;
 
@@ -322,7 +322,7 @@ public class WeekendView extends View {
         mMiddleLine = mHalfWidth + scrollX;
 
         // 最绘制区域进行裁剪，提升性能
-        canvas.clipRect(scrollX, 0, mWidth+scrollX, mHeight);
+        canvas.clipRect(scrollX, 0, mWidth + scrollX, mHeight);
 
         if (isDebug) {
             canvas.drawLine(mLeftLine, 0, mLeftLine, mHeight, mHelpPaint);
