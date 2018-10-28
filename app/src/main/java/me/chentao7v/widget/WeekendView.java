@@ -1,4 +1,4 @@
-package me.leo.weekendview;
+package me.chentao7v.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -103,7 +103,7 @@ public class WeekendView extends View {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(10);
-        mPaint.setColor(Color.GREEN);
+        mPaint.setColor(Color.parseColor("#ff0071"));
 
         mHelpPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mHelpPaint.setStrokeWidth(1);
@@ -116,7 +116,6 @@ public class WeekendView extends View {
 
         mMinVelocity = ViewConfiguration.get(context).getScaledMinimumFlingVelocity();
         mMaxVelocity = ViewConfiguration.get(context).getScaledMaximumFlingVelocity();
-
     }
 
     @Override
@@ -162,6 +161,7 @@ public class WeekendView extends View {
         mScrollLeftBorder = 0;
         mScrollRightBorder = mInitXCoor[6] - mHalfWidth;
 
+        // 文字绘制居中
         Paint.FontMetrics fontMetrics = mHelpPaint.getFontMetrics();
         mTextOffset = (fontMetrics.ascent + fontMetrics.descent) * 0.5f;
     }
@@ -169,6 +169,7 @@ public class WeekendView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
+        // 事件给到VelocityTracker以最终当前的滑动速度
         if (mVelocityTracker == null) {
             mVelocityTracker = VelocityTracker.obtain();
         }
@@ -176,20 +177,21 @@ public class WeekendView extends View {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                // 取消之前的动画
                 if (!mScroller.isFinished()) {
                     mScroller.abortAnimation();
                 }
                 mDownX = event.getX();
                 break;
             case MotionEvent.ACTION_MOVE:
-                float moveX = event.getX();
-                float dx = moveX - mDownX;
+                float currentX = event.getX();
+                float dx = currentX - mDownX;
                 // 增量移动
                 scrollBy((int) -dx, 0);
-                mDownX = moveX;
+                mDownX = currentX;
                 break;
             case MotionEvent.ACTION_UP:
-                // 计算速度
+                // UP时，计算速度
                 mVelocityTracker.computeCurrentVelocity(1000, mMaxVelocity);
                 float velocityX = mVelocityTracker.getXVelocity();
 
@@ -319,8 +321,8 @@ public class WeekendView extends View {
         mRightLine = mRightHelperLineInit + scrollX;
         mMiddleLine = mHalfWidth + scrollX;
 
+        // 最绘制区域进行裁剪，提升性能
         canvas.clipRect(scrollX, 0, mWidth+scrollX, mHeight);
-
 
         if (isDebug) {
             canvas.drawLine(mLeftLine, 0, mLeftLine, mHeight, mHelpPaint);
