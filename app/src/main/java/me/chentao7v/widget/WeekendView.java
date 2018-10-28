@@ -169,6 +169,8 @@ public class WeekendView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
+        getParent().requestDisallowInterceptTouchEvent(true);
+
         // 事件给到VelocityTracker以最终当前的滑动速度
         if (mVelocityTracker == null) {
             mVelocityTracker = VelocityTracker.obtain();
@@ -408,4 +410,5 @@ public class WeekendView extends View {
             return mMinRadius;
         }
     }
+
 }

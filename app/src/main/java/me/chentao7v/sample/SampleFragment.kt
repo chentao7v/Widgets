@@ -13,7 +13,6 @@ import me.chentao7v.widget.R
 /**
  * @author leo
  */
-
 class SampleWatchFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
