@@ -1,9 +1,10 @@
 package me.chentao7v.sample
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_search.*
 import me.chentao7v.widget.R
@@ -13,8 +14,6 @@ import me.chentao7v.widget.R
  */
 
 class SearchActivity : AppCompatActivity() {
-
-    private val handler = Handler()
 
     companion object {
 
@@ -30,9 +29,25 @@ class SearchActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_search)
 
-        handler.postDelayed({
-            searchLayout.start()
-        }, 1000)
+        searchLayout.animatorListener = object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator?, isReverse: Boolean) {
+                if (isReverse) {
+                    finish()
+                }
+            }
+        }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        searchLayout.start()
+    }
+
+    override fun onBackPressed() {
+//        super.onBackPressed()
+
+        searchLayout.revert()
 
     }
 

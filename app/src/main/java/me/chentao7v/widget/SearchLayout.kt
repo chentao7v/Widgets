@@ -1,5 +1,6 @@
 package me.chentao7v.widget
 
+import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.Canvas
@@ -16,10 +17,11 @@ class SearchLayout : FrameLayout {
     private val path = Path()
     private val animator by lazy {
         val anim = ObjectAnimator.ofFloat(this, "radius", 0f, dp2px(500f).toFloat())
-        anim.duration = 3000
+        anim.addListener(animatorListener)
+        anim.duration = 1000
         return@lazy anim
     }
-
+    var animatorListener: Animator.AnimatorListener? = null
     private var radius = 0f
         set(value) {
             field = value
