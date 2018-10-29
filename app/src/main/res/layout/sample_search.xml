@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.chentao7v.widget.SearchLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:textSize="40dp"
+        android:background="#f00"
+        android:text="大奖是看得见爱上了大奖是看得见爱上了大奖是看得见爱上了大奖是看得见爱上了大奖是看得见爱上了大奖是看得见爱上了大奖是看得见爱上了大奖是看得见爱上了大奖是看得见爱上了大奖是看得见爱上了大奖是看得见爱上了"/>
+
+</me.chentao7v.widget.SearchLayout>
