@@ -1,7 +1,9 @@
 package me.chentao7v.widget
 
+import android.animation.ObjectAnimator
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Path
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import me.chentao7v.utils.dp2px
@@ -11,49 +13,45 @@ import me.chentao7v.utils.dp2px
  */
 class SearchLayout : FrameLayout {
 
-    private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
-//    private val rectF = RectF()
     private val path = Path()
+    private val animator by lazy {
+        val anim = ObjectAnimator.ofFloat(this, "radius", 0f, dp2px(500f).toFloat())
+        anim.duration = 3000
+        return@lazy anim
+    }
+
+    private var radius = 0f
+        set(value) {
+            field = value
+
+            path.reset()
+            path.addCircle(width.toFloat() - dp2px(20f), dp2px(20f).toFloat(), radius, Path.Direction.CW)
+
+            invalidate()
+        }
+
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet)
 
-    private val transferMode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
-
     init {
-        paint.color = Color.BLACK
+        // 避免不调用draw方法
         setWillNotDraw(false)
-    }
-
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
-
-//        rectF.set(
-//            0f, 0f, width.toFloat(), height.toFloat()
-//        )
-
-        path.reset()
-        path.addCircle((width / 2).toFloat(), (height / 2).toFloat(), dp2px(200f).toFloat(), Path.Direction.CW)
     }
 
     override fun draw(canvas: Canvas) {
 
         canvas.clipPath(path)
 
-
-
-//        val saveLayer = canvas.saveLayer(rectF, paint)
-//
-//        canvas.drawCircle((width / 2).toFloat(), (height / 2).toFloat(), dp2px(200f).toFloat(), paint)
-//        paint.xfermode = transferMode
         super.draw(canvas)
+    }
 
+    fun start() {
+        animator.start()
+    }
 
-
-//        paint.xfermode = null
-//
-//        canvas.restoreToCount(saveLayer)
-
+    fun revert() {
+        animator.reverse()
     }
 
 }
