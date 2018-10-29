@@ -43,7 +43,9 @@ class SearchLayout : FrameLayout {
 
     override fun draw(canvas: Canvas) {
 
-        canvas.clipPath(path)
+        if (!isInEditMode) {
+            canvas.clipPath(path)
+        }
 
         super.draw(canvas)
     }
