@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         tabLayout.setupWithViewPager(viewPager)
         viewPager.adapter = SimpleAdapter(supportFragmentManager)
 
+        ibtnSearch.setOnClickListener { SearchActivity.actionStart(this@MainActivity) }
     }
 
     private class SimpleAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
