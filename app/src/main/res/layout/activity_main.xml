@@ -44,6 +44,6 @@
     <include
         android:visibility="gone"
 
-        layout="@layout/activity_search"/>
+        layout="@layout/layout_search"/>
 
 </RelativeLayout>
