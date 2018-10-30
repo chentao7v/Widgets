@@ -18,7 +18,7 @@ class SearchLayout : FrameLayout {
     private val animator by lazy {
         val anim = ObjectAnimator.ofFloat(this, "radius", 0f, dp2px(500f).toFloat())
         anim.addListener(animatorListener)
-        anim.duration = 1000
+        anim.duration = 500
         return@lazy anim
     }
     var animatorListener: Animator.AnimatorListener? = null
@@ -27,7 +27,7 @@ class SearchLayout : FrameLayout {
             field = value
 
             path.reset()
-            path.addCircle(width.toFloat() - dp2px(20f), dp2px(20f).toFloat(), radius, Path.Direction.CW)
+            path.addCircle(width.toFloat() - dp2px(25f), dp2px(25f).toFloat(), radius, Path.Direction.CW)
 
             invalidate()
         }

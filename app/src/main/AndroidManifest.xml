@@ -16,10 +16,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:theme="@style/Theme.AppCompat.Translucent"
-            android:name="me.chentao7v.sample.SearchActivity"/>
-
     </application>
 
 </manifest>

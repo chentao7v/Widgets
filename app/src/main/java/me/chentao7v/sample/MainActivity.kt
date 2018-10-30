@@ -1,11 +1,16 @@
 package me.chentao7v.sample
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_search.*
 import me.chentao7v.widget.R
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +22,20 @@ class MainActivity : AppCompatActivity() {
         tabLayout.setupWithViewPager(viewPager)
         viewPager.adapter = SimpleAdapter(supportFragmentManager)
 
-        ibtnSearch.setOnClickListener { SearchActivity.actionStart(this@MainActivity) }
+
+        searchLayout.animatorListener = object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator?, isReverse: Boolean) {
+                if (isReverse) {
+                    searchContainer.visibility = View.GONE
+                } else {
+                    searchContainer.setBackgroundColor(Color.parseColor("#80000000"))
+                }
+            }
+        }
+        ibtnSearch.setOnClickListener {
+            searchContainer.visibility = View.VISIBLE
+            searchLayout.start()
+        }
     }
 
     private class SimpleAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
@@ -39,6 +57,15 @@ class MainActivity : AppCompatActivity() {
             1 -> "进度条"
             else -> "打卡控件"
         }
+    }
+
+    override fun onBackPressed() {
+        if (!searchContainer.isShown) {
+            super.onBackPressed()
+            return
+        }
+
+        searchLayout.revert()
 
     }
 }
