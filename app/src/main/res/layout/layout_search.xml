@@ -32,8 +32,7 @@
                 android:background="@drawable/bg_edittext"
                 android:singleLine="true"
                 android:drawablePadding="5dp"
-                android:drawableLeft="@android:drawable/btn_star_big_on"
-                android:hint="搜索内容和微博"/>
+                android:hint="输入你想查找的内容"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
