@@ -17,6 +17,7 @@ class ITHouseProgressBar : View {
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
+    // 点运动轨迹的Path
     private val path = Path()
 
     private lateinit var pathMeasure: PathMeasure
