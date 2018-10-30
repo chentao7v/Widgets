@@ -1,6 +1,6 @@
 ## 小控件
 
-### [搜索框效果]("")
+### [搜索框效果]("https://github.com/chentao7v/Widgets/blob/master/app/src/main/java/me/chentao7v/widget/SearchLayout.kt")
 
 ### [手表](https://github.com/chentao7v/Widgets/blob/master/app/src/main/java/me/chentao7v/widget/AppleWatch.kt)
 ![手表](image/watch.gif)
