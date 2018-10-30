@@ -2,7 +2,6 @@ package me.chentao7v.sample
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -24,11 +23,13 @@ class MainActivity : AppCompatActivity() {
 
 
         searchLayout.animatorListener = object : AnimatorListenerAdapter() {
+
+            override fun onAnimationStart(animation: Animator?) {
+            }
+
             override fun onAnimationEnd(animation: Animator?, isReverse: Boolean) {
                 if (isReverse) {
                     searchContainer.visibility = View.GONE
-                } else {
-                    searchContainer.setBackgroundColor(Color.parseColor("#80000000"))
                 }
             }
         }

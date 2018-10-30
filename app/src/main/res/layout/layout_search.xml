@@ -4,7 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/searchContainer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#80000000">
 
     <me.chentao7v.widget.SearchLayout
         android:id="@+id/searchLayout"
@@ -27,8 +28,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:background="@drawable/bg_edittext"
                 android:singleLine="true"
                 android:drawablePadding="5dp"
