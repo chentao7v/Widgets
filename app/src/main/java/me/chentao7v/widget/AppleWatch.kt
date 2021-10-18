@@ -227,5 +227,4 @@ class AppleWatch : View {
             removeCallbacks(this)
         }
     }
-
 }
